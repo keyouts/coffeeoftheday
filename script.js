@@ -1,30 +1,24 @@
-function showError(message) {
-      const errorDiv = document.getElementById('errorMsg');
-      errorDiv.innerText = message;
-      errorDiv.style.display = 'block';
-    }
+function pickRandomCoffee() {
+  const inventory = JSON.parse(localStorage.getItem('coffeeInventory')) || [];
+  const card = document.getElementById('coffeeCard');
+  const error = document.getElementById('errorMsg');
 
-    function clearError() {
-      const errorDiv = document.getElementById('errorMsg');
-      errorDiv.innerText = '';
-      errorDiv.style.display = 'none';
-    }
+  if (inventory.length === 0) {
+    card.innerText = "☕ No coffee available!";
+    error.innerText = "Your inventory is empty.";
+    error.style.display = 'block';
+    return;
+  }
 
-    function pickRandomCoffee() {
-      const inventory = JSON.parse(localStorage.getItem('coffeeInventory')) || [];
+  error.style.display = 'none';
+  const randomIndex = Math.floor(Math.random() * inventory.length);
+  const coffee = inventory[randomIndex];
 
-      if (inventory.length === 0) {
-        showError("No coffee found in inventory.");
-        document.getElementById('coffeeCard').innerText = "☕ No coffee today!";
-        return;
-      }
+  // Ensure all expected properties exist
+  const name = coffee.name || "Unnamed Coffee";
+  const roast = coffee.roast || "Unknown Roast";
+  const caffeine = coffee.caffeine !== undefined ? `${coffee.caffeine}mg caffeine` : "Caffeine unknown";
 
-      clearError();
-      const randomIndex = Math.floor(Math.random() * inventory.length);
-      const bean = inventory[randomIndex];
-      document.getElementById('coffeeCard').innerText =
-        `${bean.bean} • ${bean.roast} • ${bean.qty}g`;
-    }
+  card.innerText = `${name} • ${roast} • ${caffeine}`;
+}
 
-    // Initial pick on load
-    pickRandomCoffee();
