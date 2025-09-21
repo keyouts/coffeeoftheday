@@ -14,7 +14,7 @@ function showError(message) {
       const inventory = JSON.parse(localStorage.getItem('coffeeInventory')) || [];
 
       if (inventory.length === 0) {
-        showError("No beans found in inventory.");
+        showError("No coffee found in inventory.");
         document.getElementById('coffeeCard').innerText = "☕ No coffee today!";
         return;
       }
