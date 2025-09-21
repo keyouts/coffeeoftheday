@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Coffee of the Day</title>
+     <link rel="stylesheet" href="./style.css">
+</head>
+ 
+<body>
+  <div class="container" role="region" aria-labelledby="coffeeHeading">
+    <span class="aria-text" aria-label="Coffee of the Day Widget. Randomly selects one coffee bean from your inventory.">Coffee of the Day Widget</span>
+
+    <h1 id="coffeeHeading">Coffee of the Day</h1>
+
+    <div id="coffeeCard" class="coffee-card" role="status" aria-live="polite">Loading...</div>
+
+    <button onclick="pickRandomCoffee()" aria-label="Select a new random coffee bean">Re-roll</button>
+
+    <div id="errorMsg" class="error" role="alert" aria-live="assertive" style="display: none;"></div>
+  </div>
+</body>
+    <script src="./script.js"></script>
+</html>
+
